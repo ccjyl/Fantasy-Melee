@@ -11,8 +11,9 @@ namespace FantasyMelee
     /// </summary>
     public class CharacterStateMachine : StateMachine
     {
-        [Header("具体角色状态SO"), SerializeField] private CharacterStateBase[] _states;
+        [Header("具体角色状态SO"), SerializeField] private CharacterStateBase[] statesTemplate;
 
+        private CharacterStateBase[] _states;
         //引用
         private Animator _animator;
         private PlayerController _playerController;
@@ -21,6 +22,7 @@ namespace FantasyMelee
         {
             _animator = GetComponent<Animator>();
             _playerController = GetComponent<PlayerController>();
+            _states=  _playerController.copyStateBases(statesTemplate);
             stateTable = new Dictionary<Type, IState>(_states.Length); //初始化字典
             foreach (var state in _states)
             {

@@ -16,18 +16,39 @@ namespace FantasyMelee
 
         public PlayerType currentPlayerType; //当前玩家
 
-        [Header("数据"), Tooltip("角色数据")] public PlayerData playerData;
+        [Header("数据"), Tooltip("角色数据")] public PlayerData playerDataTemplate;
+        [HideInInspector] public PlayerData playerData;
         [Header("地面检测"), SerializeField, Tooltip("检测点中心")] private Transform groundDetectionCenter;
         [SerializeField, Tooltip("检测层级")] private LayerMask groundDetectionLayer;
         [SerializeField, Tooltip("检测范围")] private float groundDetectionRadius = 0.2f;
-
-
+        
         protected virtual void Awake()
         {
             inputMode = GetComponent<InputMode>();
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            playerData = Instantiate(playerDataTemplate);
         }
 
+        #region 状态复制
+
+        /// <summary>
+        /// 状态复制
+        /// </summary>
+        /// <param name="states"></param>
+        /// <returns></returns>
+        public CharacterStateBase[] copyStateBases(CharacterStateBase[] states)
+        {
+            CharacterStateBase[] copy= new CharacterStateBase[states.Length];
+            for (int i = 0; i < states.Length; i++)
+            {
+                copy[i] = Instantiate(states[i]);
+            }
+
+            return copy;
+        }
+
+        #endregion
+        
         #region 移动
 
         public void Move(float speed)
