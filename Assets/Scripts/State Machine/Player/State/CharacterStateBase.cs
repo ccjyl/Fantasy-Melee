@@ -13,6 +13,8 @@ namespace FantasyMelee
         protected PlayerController playerController;
         protected float currentSpeed;
         protected bool isAttack;//再次攻击
+        protected bool isHit;//受伤
+        protected float timer;//计时器
         /// <summary>
         /// 引用初始化
         /// </summary>

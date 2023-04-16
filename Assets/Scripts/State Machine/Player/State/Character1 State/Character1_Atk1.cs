@@ -25,14 +25,28 @@ namespace FantasyMelee
 
         public override void LogicUpdate()
         {
- 
             //---任意时机---
-            if (playerController.inputMode.Skill1)
+            if (playerController.inputMode.Sprint)
+            {
+                //冲刺
+                stateMachine.SwitchState(typeof(Character1_Sprint));
+            }
+            else if (playerController.inputMode.Skill3)
+            {
+                //技能3
+                stateMachine.SwitchState(typeof(Character1_Skill3));
+            }
+            else if (playerController.inputMode.Skill2)
+            {
+                //技能2
+                stateMachine.SwitchState(typeof(Character1_Skill2));
+            }
+            else if (playerController.inputMode.Skill1)
             {
                 //技能1
                 stateMachine.SwitchState(typeof(Character1_Skill1));
             }
-            
+
             //---当前动画播放完毕---
             if (IsAnimationFinished)
             {
@@ -41,7 +55,7 @@ namespace FantasyMelee
                     //格挡
                     stateMachine.SwitchState(typeof(Character1_Parry));
                 }
-            
+
                 else if (playerController.inputMode.Move)
                 {
                     //跑步
@@ -66,6 +80,7 @@ namespace FantasyMelee
                     stateMachine.SwitchState(typeof(Character1_Idle));
                 }
             }
+
             //是否要连击
             if (playerController.inputMode.Attack)
             {

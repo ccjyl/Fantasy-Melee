@@ -5,28 +5,35 @@ using UnityEngine;
 namespace FantasyMelee
 {
     /// <summary>
-    /// Idle 状态
+    /// Hit 状态
     /// Author:clof
     /// </summary>
-    [CreateAssetMenu(menuName = "State/Character1State/Idle", fileName = "Character1_Idle")]
-    public class Character1_Idle : CharacterStateBase
+    [CreateAssetMenu(menuName = "State/Character1State/Hit", fileName = "Character1_Hit")]
+    public class Character1_Hit : CharacterStateBase
     {
-        public override void Enter()
+        public override void Enter() 
         {
             base.Enter();
             currentSpeed = 0f;
+            timer = 0;
+            isHit = true;
+            currentSpeed = playerController.playerData.hitMoveSpeed;
+            playerController.SetUseGravity(0f); //关闭重力
         }
 
         public override void Exit()
         {
             base.Exit();
+            playerController.SetUseGravity(1f); //开启重力
         }
 
         public override void LogicUpdate()
         {
-            //---在地面上---
-            if (playerController.IsGrounded)
+            //---持续时间结束---
+            if (timer > playerController.playerData.hitDurationTime)
             {
+                playerController.SetUseGravity(1f); //开启重力
+
                 if (playerController.inputMode.Parry)
                 {
                     //格挡
@@ -52,16 +59,6 @@ namespace FantasyMelee
                     //技能1
                     stateMachine.SwitchState(typeof(Character1_Skill1));
                 }
-                else if (playerController.inputMode.Jump)
-                {
-                    //跳跃
-                    stateMachine.SwitchState(typeof(Character1_JumpUp));
-                }
-                else if (playerController.inputMode.Move)
-                {
-                    //跑步
-                    stateMachine.SwitchState(typeof(Character1_Run));
-                }
                 else if (playerController.inputMode.Attack)
                 {
                     //浮空攻击
@@ -75,12 +72,34 @@ namespace FantasyMelee
                         stateMachine.SwitchState(typeof(Character1_Atk1));
                     }
                 }
+                else if (playerController.inputMode.Jump)
+                {
+                    //跳跃
+                    stateMachine.SwitchState(typeof(Character1_JumpUp));
+                }
+                else if (playerController.IsGrounded)
+                {
+                    //---在地面---
+                    if (playerController.inputMode.Move)
+                    {
+                        //跑步
+                        stateMachine.SwitchState(typeof(Character1_Run));
+                    }
+                    else
+                    {
+                        //待机
+                        stateMachine.SwitchState(typeof(Character1_Idle));
+                    }
+                }
             }
+
+            //计时
+            timer += Time.deltaTime;
         }
 
         public override void PhysicUpdate()
         {
-            playerController.SetVelocityX(currentSpeed); //将刚体x轴设置为0
+            playerController.SetVelocityX(currentSpeed * playerController.transform.localScale.x);
         }
     }
 }

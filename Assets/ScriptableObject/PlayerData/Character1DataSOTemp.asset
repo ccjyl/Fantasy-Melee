@@ -20,3 +20,8 @@ MonoBehaviour:
   atk3MoveSpeed: 0.2
   skill1MoveSpeed: 5
   skill1DurationTime: 1
+  skill2MoveSpeed: 5
+  sprintMoveSpeed: 20
+  sprintDurationTime: 0.3
+  hitMoveSpeed: 0.3
+  hitDurationTime: 0.5

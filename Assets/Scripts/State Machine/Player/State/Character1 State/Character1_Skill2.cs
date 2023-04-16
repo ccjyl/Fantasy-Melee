@@ -5,17 +5,16 @@ using UnityEngine;
 namespace FantasyMelee
 {
     /// <summary>
-    /// 角色1 技能1
+    /// 角色1 技能2
     /// Author:clof
     /// </summary>
-    [CreateAssetMenu(menuName = "State/Character1State/Skill1", fileName = "Character1_Skill1")]
-    public class Character1_Skill1 : CharacterStateBase
+    [CreateAssetMenu(menuName = "State/Character1State/Skill2", fileName = "Character1_Skill2")]
+    public class Character1_Skill2 : CharacterStateBase
     {
         public override void Enter()
         {
             base.Enter();
-            currentSpeed = playerController.playerData.skill1MoveSpeed;
-            timer = 0f; //计时器
+            currentSpeed = 0;
         }
 
         public override void Exit()
@@ -32,8 +31,9 @@ namespace FantasyMelee
                 //冲刺
                 stateMachine.SwitchState(typeof(Character1_Sprint));
             }
-            //---持续时间结束---
-            if (timer > playerController.playerData.skill1DurationTime)
+
+            //---当前动画播放完毕---
+            if (IsAnimationFinished)
             {
                 if (playerController.inputMode.Parry)
                 {
@@ -45,10 +45,10 @@ namespace FantasyMelee
                     //技能3
                     stateMachine.SwitchState(typeof(Character1_Skill3));
                 }
-                else if (playerController.inputMode.Skill2)
+                else if (playerController.inputMode.Skill1)
                 {
-                    //技能2
-                    stateMachine.SwitchState(typeof(Character1_Skill2));
+                    //技能1
+                    stateMachine.SwitchState(typeof(Character1_Skill1));
                 }
                 else if (isAttack)
                 {
@@ -80,13 +80,11 @@ namespace FantasyMelee
             {
                 isAttack = true;
             }
-            //计时
-            timer += Time.deltaTime;
         }
 
         public override void PhysicUpdate()
         {
-            playerController.Move(currentSpeed);
+            playerController.SetVelocityX(currentSpeed);
         }
     }
 }

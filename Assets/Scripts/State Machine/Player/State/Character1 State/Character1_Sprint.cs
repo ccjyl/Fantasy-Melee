@@ -5,31 +5,36 @@ using UnityEngine;
 namespace FantasyMelee
 {
     /// <summary>
-    /// 角色1 普通攻击第二段
+    /// 角色1 冲刺
     /// Author:clof
     /// </summary>
-    [CreateAssetMenu(menuName = "State/Character1State/Atk2", fileName = "Character1_Atk2")]
-    public class Character1_Atk2 : CharacterStateBase
+    [CreateAssetMenu(menuName = "State/Character1State/Sprint", fileName = "Character1_Sprint")]
+    public class Character1_Sprint : CharacterStateBase
     {
+      
+
         public override void Enter()
         {
             base.Enter();
-            currentSpeed = playerController.playerData.atk2MoveSpeed;
+            currentSpeed = playerController.playerData.sprintMoveSpeed;
+            timer = 0f; //计时器
+            playerController.SetUseGravity(0); //取消重力
         }
 
         public override void Exit()
         {
             base.Exit();
             isAttack = false;
+            playerController.SetUseGravity(1); //取消重力
         }
 
         public override void LogicUpdate()
         {
             //---任意时机---
-            if (playerController.inputMode.Sprint)
+            if (playerController.inputMode.Parry)
             {
-                //冲刺
-                stateMachine.SwitchState(typeof(Character1_Sprint));
+                //格挡
+                stateMachine.SwitchState(typeof(Character1_Parry));
             }
             else if (playerController.inputMode.Skill3)
             {
@@ -46,32 +51,27 @@ namespace FantasyMelee
                 //技能1
                 stateMachine.SwitchState(typeof(Character1_Skill1));
             }
-
-            //---当前动画播放完毕---
-            if (IsAnimationFinished)
+            else if (isAttack)
             {
-                if (playerController.inputMode.Parry)
+                //浮空攻击
+                if (playerController.inputMode.Up)
                 {
-                    //格挡
-                    stateMachine.SwitchState(typeof(Character1_Parry));
+                    stateMachine.SwitchState(typeof(Character1_LevitateAtk));
                 }
-                else if (playerController.inputMode.Move)
+                else
+                {
+                    //普攻2
+                    stateMachine.SwitchState(typeof(Character1_Atk1));
+                }
+            }
+            //---持续时间结束---
+            if (timer > playerController.playerData.sprintDurationTime)
+            {
+               
+                if (playerController.inputMode.Move)
                 {
                     //跑步
                     stateMachine.SwitchState(typeof(Character1_Run));
-                }
-                else if (isAttack)
-                {
-                    //浮空攻击
-                    if (playerController.inputMode.Up)
-                    {
-                        stateMachine.SwitchState(typeof(Character1_LevitateAtk));
-                    }
-                    else
-                    {
-                        //普攻1
-                        stateMachine.SwitchState(typeof(Character1_Atk1));
-                    }
                 }
                 else if (!playerController.inputMode.Move)
                 {
@@ -80,16 +80,19 @@ namespace FantasyMelee
                 }
             }
 
-            //是否要连击
+            //是否下个动画衔接攻击
             if (playerController.inputMode.Attack)
             {
                 isAttack = true;
             }
+
+            //计时
+            timer += Time.deltaTime;
         }
 
         public override void PhysicUpdate()
         {
-            playerController.SetVelocityX(currentSpeed * playerController.transform.localScale.x);
+            playerController.SetVelocityX(currentSpeed*playerController.transform.localScale.x);
         }
     }
 }

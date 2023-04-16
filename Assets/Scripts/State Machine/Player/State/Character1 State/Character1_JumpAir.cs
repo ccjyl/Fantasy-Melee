@@ -25,6 +25,12 @@ namespace FantasyMelee
         public override void LogicUpdate()
         {
             //---任意时机---
+            if (playerController.inputMode.Sprint)
+            {
+                //冲刺
+                stateMachine.SwitchState(typeof(Character1_Sprint));
+            }
+            else
             if (playerController.inputMode.Skill1)
             {
                 //技能1

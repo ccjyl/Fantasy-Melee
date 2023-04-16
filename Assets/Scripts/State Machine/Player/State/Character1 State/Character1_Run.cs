@@ -23,7 +23,8 @@ namespace FantasyMelee
         }
 
         public override void LogicUpdate()
-        {   //---在地面上---
+        {
+            //---在地面上---
             if (playerController.IsGrounded)
             {
                 if (playerController.inputMode.Parry)
@@ -31,15 +32,25 @@ namespace FantasyMelee
                     //格挡
                     stateMachine.SwitchState(typeof(Character1_Parry));
                 }
+                else if (playerController.inputMode.Sprint)
+                {
+                    //冲刺
+                    stateMachine.SwitchState(typeof(Character1_Sprint));
+                }
+                else if (playerController.inputMode.Skill3)
+                {
+                    //技能3
+                    stateMachine.SwitchState(typeof(Character1_Skill3));
+                }
+                else if (playerController.inputMode.Skill2)
+                {
+                    //技能2
+                    stateMachine.SwitchState(typeof(Character1_Skill2));
+                }
                 else if (playerController.inputMode.Skill1)
                 {
                     //技能1
                     stateMachine.SwitchState(typeof(Character1_Skill1));
-                }
-                else if (!playerController.inputMode.Move)
-                {
-                    //待机
-                    stateMachine.SwitchState(typeof(Character1_Idle));
                 }
                 else if (playerController.inputMode.Attack)
                 {
@@ -59,6 +70,12 @@ namespace FantasyMelee
                     //跳跃
                     stateMachine.SwitchState(typeof(Character1_JumpUp));
                 }
+                else if (!playerController.inputMode.Move)
+                {
+                    //待机
+                    stateMachine.SwitchState(typeof(Character1_Idle));
+                }
+                
             }
         }
 
