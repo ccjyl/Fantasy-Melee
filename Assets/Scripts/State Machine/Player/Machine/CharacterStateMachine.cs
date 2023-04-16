@@ -15,16 +15,16 @@ namespace FantasyMelee
 
         //引用
         private Animator _animator;
-        private CharacterController _characterController;
+        private PlayerController _playerController;
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
-            _characterController = GetComponent<CharacterController>();
+            _playerController = GetComponent<PlayerController>();
             stateTable = new Dictionary<Type, IState>(_states.Length); //初始化字典
             foreach (var state in _states)
             {
-                state.Initialize(_animator, this, _characterController); //将引用传入至状态中
+                state.Initialize(_animator, this, _playerController); //将引用传入至状态中
                 stateTable.Add(state.GetType(), state); //将激活的状态放入字典保存
             }
         }

@@ -10,19 +10,19 @@ namespace FantasyMelee
     /// </summary>
     public class CharacterStateBase : StateBase
     {
-        protected CharacterController characterController;
+        protected PlayerController playerController;
         protected float currentSpeed;
+        protected bool isAttack;//再次攻击
         /// <summary>
         /// 引用初始化
         /// </summary>
-        public void Initialize(Animator animator, StateMachine stateMachine, CharacterController characterController)
+        public void Initialize(Animator animator, StateMachine stateMachine, PlayerController playerController)
         {
             this.animator = animator;
             this.stateMachine = stateMachine;
-            this.characterController = characterController;
+            this.playerController = playerController;
         }
-        
-        
-        
+
+     
     }
 }
