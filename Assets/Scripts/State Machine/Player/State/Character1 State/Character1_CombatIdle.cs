@@ -24,6 +24,7 @@ namespace FantasyMelee
 
         public override void LogicUpdate()
         {
+            base.LogicUpdate();
             //---在地面上---
             if (playerController.IsGrounded)
             {

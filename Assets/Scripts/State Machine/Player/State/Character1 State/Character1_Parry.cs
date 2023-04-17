@@ -15,15 +15,18 @@ namespace FantasyMelee
         {
             base.Enter();
             currentSpeed = 0;
+            timer = 0;
         }
 
         public override void Exit()
         {
             base.Exit();
+            playerController.isCanParry = false;
         }
 
         public override void LogicUpdate()
         {
+            base.LogicUpdate();
             //---任意时机---
             if (playerController.inputMode.Sprint)
             {
@@ -32,7 +35,7 @@ namespace FantasyMelee
             }
 
             //---取消格挡时---
-            if (!playerController.inputMode.Parry)
+            if (!playerController.inputMode.Parry || timer > playerController.playerData.parryDurationTime)
             {
                 if (playerController.inputMode.Skill3)
                 {
@@ -78,6 +81,8 @@ namespace FantasyMelee
                     stateMachine.SwitchState(typeof(Character1_Idle));
                 }
             }
+
+            timer += Time.deltaTime;
         }
 
         public override void PhysicUpdate()

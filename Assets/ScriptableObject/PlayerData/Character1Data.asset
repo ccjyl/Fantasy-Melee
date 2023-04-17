@@ -15,13 +15,35 @@ MonoBehaviour:
   runMoveSpeed: 5
   jumpHorizontalSpeed: 5
   jumpVerticalSpeed: 5
+  maxHp: 300
+  maxMp: 100
+  recoverMpTime: 1
+  recoverMp: 1
   atk1MoveSpeed: 0.2
+  atk1Damage: 2
+  atk1RecoverMp: 2
   atk2MoveSpeed: 0.2
-  atk3MoveSpeed: 0.2
+  atk2Damage: 3
+  atk2RecoverMp: 2
+  levitateAtkMoveSpeed: 0.2
+  levitateAtkDamage: 5
   skill1MoveSpeed: 5
   skill1DurationTime: 1
+  skill1Damage: 2
+  skill1ExpendMp: 5
   skill2MoveSpeed: 5
+  skill2Damage: 5
+  skill2ExpendMp: 15
+  skill3MoveSpeed: 0
+  skill3Damage1: 10
+  skill3Damage2: 5
+  skill3ExpendMp: 20
   sprintMoveSpeed: 20
   sprintDurationTime: 0.3
-  hitMoveSpeed: 0.3
+  sprintExpendMp: 5
+  parryDurationTime: 3
+  parryCoolTime: 0.4
+  hitMoveSpeed: 0
   hitDurationTime: 0.5
+  invincibleDurationTime: 2
+  resetHitTime: 2

@@ -14,17 +14,22 @@ namespace FantasyMelee
         public override void Enter()
         {
             base.Enter();
-            currentSpeed = playerController.playerData.atk3MoveSpeed;
+            currentSpeed = playerController.playerData.levitateAtkMoveSpeed;
+            //设置伤害
+            playerController.currentDamage = playerController.playerData.levitateAtkDamage;
+            playerController.isLevitate = true;
         }
 
         public override void Exit()
         {
             base.Exit();
             isAttack = false;
+            playerController.isLevitate = false;
         }
 
         public override void LogicUpdate()
         {
+            base.LogicUpdate();
             //---任意时机---
             if (playerController.inputMode.Sprint)
             {

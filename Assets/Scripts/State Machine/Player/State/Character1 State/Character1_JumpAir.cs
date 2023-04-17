@@ -24,19 +24,14 @@ namespace FantasyMelee
 
         public override void LogicUpdate()
         {
+            base.LogicUpdate();
             //---任意时机---
             if (playerController.inputMode.Sprint)
             {
                 //冲刺
                 stateMachine.SwitchState(typeof(Character1_Sprint));
             }
-            else
-            if (playerController.inputMode.Skill1)
-            {
-                //技能1
-                stateMachine.SwitchState(typeof(Character1_Skill1));
-            }
-            
+
             //---在地面上---
             if (playerController.IsGrounded)
             {

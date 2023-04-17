@@ -11,12 +11,11 @@ namespace FantasyMelee
     [CreateAssetMenu(menuName = "State/Character1State/Victory", fileName = "Character1_Victory")]
     public class Character1_Victory : CharacterStateBase
     {
-        public override void Enter() 
+        public override void Enter()
         {
             base.Enter();
             currentSpeed = 0f;
             Debug.Log("胜利");
-
         }
 
         public override void Exit()
@@ -26,7 +25,7 @@ namespace FantasyMelee
 
         public override void LogicUpdate()
         {
-           
+            base.LogicUpdate();
         }
 
         public override void PhysicUpdate()

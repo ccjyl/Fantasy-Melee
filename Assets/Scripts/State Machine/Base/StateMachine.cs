@@ -55,5 +55,17 @@ public class StateMachine : MonoBehaviour
     
     
     #endregion
+
+    #region 状态比较
+    /// <summary>
+    /// 当前状态和传入类型是否一致
+    /// </summary>
+    /// <param name="stateType">类型</param>
+    public bool CompareState(Type stateType)
+    {
+        return _currentState.GetType() == stateType;
+    }
+
+    #endregion
     
 }

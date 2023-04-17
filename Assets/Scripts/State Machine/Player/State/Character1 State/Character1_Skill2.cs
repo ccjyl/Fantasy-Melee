@@ -14,6 +14,10 @@ namespace FantasyMelee
         public override void Enter()
         {
             base.Enter();
+            //消耗蓝量
+            playerController.CurrentMp -= playerController.playerData.skill2ExpendMp;
+            //设置伤害
+            playerController.currentDamage = playerController.playerData.skill2Damage;
             currentSpeed = 0;
         }
 
@@ -24,7 +28,7 @@ namespace FantasyMelee
         }
 
         public override void LogicUpdate()
-        {
+        { base.LogicUpdate();
             //---任意时机---
             if (playerController.inputMode.Sprint)
             {
@@ -40,12 +44,14 @@ namespace FantasyMelee
                     //格挡
                     stateMachine.SwitchState(typeof(Character1_Parry));
                 }
-                else if (playerController.inputMode.Skill3)
+                else if (playerController.inputMode.Skill3 )
                 {
                     //技能3
                     stateMachine.SwitchState(typeof(Character1_Skill3));
                 }
-                else if (playerController.inputMode.Skill1)
+         
+                else if (playerController.inputMode.Skill1 )
+
                 {
                     //技能1
                     stateMachine.SwitchState(typeof(Character1_Skill1));
