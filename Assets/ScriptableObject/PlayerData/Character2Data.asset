@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c33ef09b2f157f49a6f2604504f73ad, type: 3}
+  m_Name: Character2Data
+  m_EditorClassIdentifier: 
+  runMoveSpeed: 5
+  jumpHorizontalSpeed: 5
+  jumpVerticalSpeed: 7
+  maxHp: 300
+  maxMp: 100
+  recoverMpTime: 1
+  recoverMp: 1
+  atk1MoveSpeed: 0.2
+  atk1Damage1: 2
+  atk1Damage2: 2
+  atk1RecoverMp: 2
+  atk2MoveSpeed: 0.2
+  atk2Damage: 3
+  atk2RecoverMp: 2
+  levitateAtkMoveSpeed: 0.2
+  levitateAtkDamage: 5
+  skill1MoveSpeed: 5
+  skill1DurationTime: 1
+  skill1Damage: 2
+  skill1ExpendMp: 5
+  skill1ImprisonTime: 5
+  skill2MoveSpeed: 0
+  skill2Damage: 5
+  skill2ExpendMp: 15
+  skill3MoveSpeed: 0
+  skill3Damage1: 10
+  skill3Damage2: 5
+  skill3ExpendMp: 20
+  sprintMoveSpeed: 20
+  sprintDurationTime: 0.3
+  sprintExpendMp: 5
+  parryDurationTime: 3
+  parryCoolTime: 0.4
+  hitMoveSpeed: 0.3
+  hitDurationTime: 0.5
+  invincibleDurationTime: 1
+  resetHitTime: 2

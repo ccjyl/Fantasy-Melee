@@ -9,7 +9,7 @@ namespace FantasyMelee
     /// Author:clof
     /// </summary>
     [CreateAssetMenu(menuName = "State/Character1State/Hit", fileName = "Character1_Hit")]
-    public class Character1_Hit : CharacterStateBase
+    public class Character1_Hit : Character1StateBase
     {
         public override void Enter()
         {
@@ -38,6 +38,11 @@ namespace FantasyMelee
                 playerController.SetFaceDirection(-playerController.transform.localScale.x);
             }
 
+            //skill1 禁锢
+            if (playerController.attacker.isSkill1)
+            {
+                playerController.isImprison = true;//将被攻击者禁锢
+            }
 
             if (playerController.attacker.isAtk1)
             {
@@ -136,6 +141,9 @@ namespace FantasyMelee
             timer += Time.deltaTime;
         }
 
-        public override void PhysicUpdate() { }
+        public override void PhysicUpdate()
+        {
+            playerController.SetVelocityX(currentSpeed);
+        }
     }
 }

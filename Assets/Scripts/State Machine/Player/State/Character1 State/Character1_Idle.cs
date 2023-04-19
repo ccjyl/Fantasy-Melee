@@ -9,7 +9,7 @@ namespace FantasyMelee
     /// Author:clof
     /// </summary>
     [CreateAssetMenu(menuName = "State/Character1State/Idle", fileName = "Character1_Idle")]
-    public class Character1_Idle : CharacterStateBase
+    public class Character1_Idle : Character1StateBase
     {
         public override void Enter()
         {

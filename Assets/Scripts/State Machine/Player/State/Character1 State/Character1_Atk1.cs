@@ -9,7 +9,7 @@ namespace FantasyMelee
     /// Author:clof
     /// </summary>
     [CreateAssetMenu(menuName = "State/Character1State/Atk1", fileName = "Character1_Atk1")]
-    public class Character1_Atk1 : CharacterStateBase
+    public class Character1_Atk1 : Character1StateBase
     {
         public override void Enter()
         {
@@ -19,7 +19,7 @@ namespace FantasyMelee
 
             currentSpeed = playerController.playerData.atk1MoveSpeed;
             //设置伤害
-            playerController.currentDamage = playerController.playerData.atk1Damage;
+            playerController.currentDamage = playerController.playerData.atk1Damage1;
         }
 
         public override void Exit()

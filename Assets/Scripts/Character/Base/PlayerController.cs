@@ -21,13 +21,14 @@ namespace FantasyMelee
         [HideInInspector] public bool isLevitate; //是否浮空
         [HideInInspector] public bool isAtk1; //是Atk1
         [HideInInspector] public bool isAtk2; //是Atk2
+        [HideInInspector] public bool isSkill1; //是Skill1
         [HideInInspector] public bool isCanParry = true; //能否格挡
         [HideInInspector] public bool isCanHit = true; //能否受伤
         [HideInInspector] public bool isHitting; //受伤中
         [HideInInspector] public float hitCount; //受伤计数
         [HideInInspector] public bool isDoubleJump = false; //是否是蓄力跳
         [HideInInspector] public float currentDamage; //当前伤害值
-
+        [HideInInspector] public bool isImprison; //是否禁锢
 
         [Header("数据"), Tooltip("角色数据")] public PlayerData playerDataTemplate;
         [HideInInspector] public PlayerData playerData; //角色数据
@@ -42,8 +43,9 @@ namespace FantasyMelee
         private WaitForSeconds _parryRecoverTime;
         private WaitForSeconds _invincibleTime;
         private WaitForSeconds _resetHitTime;
-        private bool _resetHitOpen;//重置协程是否已经启动
+        private bool _resetHitOpen; //重置协程是否已经启动
         private float _jumpTimer; //跳跃计时器
+        private float _imprisonTimer = 0; //解除禁锢计时器
 
         #region 属性
 
@@ -83,6 +85,7 @@ namespace FantasyMelee
         {
             //赋值
             _currentHp = playerData.maxHp;
+            _currentMp = playerData.maxMp;
             StartCoroutine(nameof(AutoRecoverMp)); //自动回蓝
             isCanParry = true;
             isCanHit = true;
@@ -109,6 +112,10 @@ namespace FantasyMelee
                 StartCoroutine(nameof(HitInvincible));
             }
 
+            if (isImprison && _imprisonTimer == 0)
+            {
+                StartCoroutine(nameof(RelieveImprison));
+            }
         }
 
 
@@ -162,6 +169,14 @@ namespace FantasyMelee
         /// </summary>
         public void SetVelocityX(float velocityX)
         {
+            //背禁锢限制移动
+            if (isImprison)
+            {
+                _rigidbody2D.velocity = Vector2.zero;
+
+                return;
+            }
+
             _rigidbody2D.velocity = new Vector2(velocityX, _rigidbody2D.velocity.y);
         }
 
@@ -264,7 +279,7 @@ namespace FantasyMelee
         {
             while (true)
             {
-                _currentMp += playerData.recoverMp;
+                CurrentMp += playerData.recoverMp;
                 yield return _autoRecoverMpTime;
             }
         }
@@ -285,7 +300,7 @@ namespace FantasyMelee
         #endregion
 
         #region 受伤
-        
+
         /// <summary>
         /// hit 无敌
         /// </summary>
@@ -301,7 +316,7 @@ namespace FantasyMelee
             StopCoroutine(nameof(ResetHitCount));
             StartCoroutine(nameof(ResetHitCount));
         }
-        
+
         /// <summary>
         /// 重置hit计数
         /// </summary>
@@ -311,7 +326,7 @@ namespace FantasyMelee
             yield return _resetHitTime;
             hitCount = 0;
         }
-        
+
         #endregion
 
         #region 提示
@@ -346,6 +361,26 @@ namespace FantasyMelee
             {
                 GUI.Label(rect4, message3, style);
             }
+        }
+
+        #endregion
+
+        #region 禁锢
+
+        /// <summary>
+        /// 解除禁锢
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator RelieveImprison()
+        {
+            while (_imprisonTimer < playerData.skill1ImprisonTime)
+            {
+                _imprisonTimer += Time.deltaTime;
+                yield return null;
+            }
+
+            isImprison = false;
+            _imprisonTimer = 0;
         }
 
         #endregion
