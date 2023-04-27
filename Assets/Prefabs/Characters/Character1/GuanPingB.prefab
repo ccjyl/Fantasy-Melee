@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7265876209645161487}
   - component: {fileID: 7265876209645161472}
   m_Layer: 8
-  m_Name: Character1_Two
+  m_Name: GuanPingB
   m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -166,12 +166,14 @@ MonoBehaviour:
   isLevitate: 0
   isAtk1: 0
   isAtk2: 0
+  isSkill1: 0
   isCanParry: 0
   isCanHit: 1
   isHitting: 0
   hitCount: 0
   isDoubleJump: 0
   currentDamage: 0
+  isImprison: 0
   playerDataTemplate: {fileID: 11400000, guid: ce4049de51d878445999f8e77d2fa139, type: 2}
   playerData: {fileID: 11400000, guid: ce4049de51d878445999f8e77d2fa139, type: 2}
   groundDetectionCenter: {fileID: 7265876211106788283}
@@ -180,6 +182,23 @@ MonoBehaviour:
     m_Bits: 64
   groundDetectionRadius: 0.2
   levitatePosition: {fileID: 7265876211052751712}
+  _currentHp: 0
+  _currentMp: 0
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 6635b7c2859077b4688d3ce08da1a2c7, type: 2}
+        m_TargetAssemblyTypeName: PlayerEventSO, Assembly-CSharp
+        m_MethodName: RaisedEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7265876209645161487
 MonoBehaviour:
   m_ObjectHideFlags: 0

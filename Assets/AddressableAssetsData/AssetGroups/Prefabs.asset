@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Prefabs
+  m_EditorClassIdentifier: 
+  m_GroupName: Prefabs
+  m_Data:
+    m_SerializedData: []
+  m_GUID: e4f789eff5ddbb4449046da749f5cb00
+  m_SerializeEntries:
+  - m_GUID: b76caaccc5dab1d4ab4f3a1e0a7e1d3b
+    m_Address: Canvas_SelectRole
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 412ced88dabeb754dbbec06417d47e8c
+    m_Address: Canvas_Setting
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: efdc30eeeb5f1f24b99e57c68b7b7acc
+    m_Address: MainInterFace
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 54fd1a22656d6534da681c3e34fe3f27
+    m_Address: Character1_One
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 5ba5b89e1b9728049bc63ca3ce18ff90
+    m_Address: Character1_Two
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 656a02008a2d6b842912e73c87ee92f3
+    m_Address: Character2_One
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 24fb598a8704d5e4d82c72019c56adba
+    m_Address: Character2_Two
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: d8e3d7e469b27954cbf6f8193aca2ac2
+    m_Address: CanvasFightUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 209bc7e86e6e9b549bac9e7de85adce5, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: dbfd48231fbe40f44b907d93107a1c3e, type: 2}
+    - {fileID: 11400000, guid: 362dd77ed3daa3849a32ca7b4481353c, type: 2}

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace FantasyMelee
 {
@@ -37,8 +38,8 @@ namespace FantasyMelee
         [SerializeField, Tooltip("检测范围")] private float groundDetectionRadius = 0.2f;
         [Header("攻击"), Tooltip("浮空位置")] public Transform levitatePosition;
 
-        private float _currentHp;
-        private float _currentMp;
+        public float _currentHp;
+        public float _currentMp;
         private WaitForSeconds _autoRecoverMpTime;
         private WaitForSeconds _parryRecoverTime;
         private WaitForSeconds _invincibleTime;
@@ -46,6 +47,8 @@ namespace FantasyMelee
         private bool _resetHitOpen; //重置协程是否已经启动
         private float _jumpTimer; //跳跃计时器
         private float _imprisonTimer = 0; //解除禁锢计时器
+
+        public UnityEvent<PlayerController> OnHealthChange;
 
         #region 属性
 
@@ -55,7 +58,12 @@ namespace FantasyMelee
         public float CurrentHp
         {
             get => _currentHp;
-            set => _currentHp = Mathf.Clamp(value, 0, playerData.maxHp);
+            //set => _currentHp = Mathf.Clamp(value, 0, playerData.maxHp);
+            set
+            {
+                _currentHp = Mathf.Clamp(value, 0, playerData.maxHp);
+                OnHealthChange?.Invoke(this);
+            }
         }
 
         /// <summary>
@@ -64,7 +72,12 @@ namespace FantasyMelee
         public float CurrentMp
         {
             get => _currentMp;
-            set => _currentMp = Mathf.Clamp(value, 0, playerData.maxMp);
+            //set => _currentMp = Mathf.Clamp(value, 0, playerData.maxMp);
+            set
+            {
+                _currentMp = Mathf.Clamp(value, 0, playerData.maxMp);
+                OnHealthChange?.Invoke(this);
+            }
         }
 
         #endregion
@@ -365,7 +378,7 @@ namespace FantasyMelee
 
         #endregion
 
-        #region 禁锢
+            #region 禁锢
 
         /// <summary>
         /// 解除禁锢
