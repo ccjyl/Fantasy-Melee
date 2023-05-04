@@ -56,6 +56,8 @@ public class UIManager : MonoBehaviour
          gameOverPanel.SetActive(true);
          GameManager.Instance.beginKO = false;
          gameOverImage.rectTransform.DOScale(new Vector3(1.5f, 1.5f, 1f), 2f);
+         GameManager.Instance.times.enabled = false;
+         GameManager.Instance.timer.fillAmount = 1;
          Destroy(player1);
          Destroy(player2);
       }

@@ -7,8 +7,21 @@ using UnityEngine.UI;
 //计时器
 public class CountdownTimer : MonoBehaviour
 {
-    private int remainingTime = 120;
+    public int remainingTime = 120;
     public Image Timer;
+
+    private void OnEnable()
+    {
+        //初始化
+        Timer.fillAmount = 1;
+        remainingTime = 120;
+    }
+
+    private void OnDisable()
+    {
+        Timer.fillAmount = 1;
+        remainingTime = 120;
+    }
 
     private void Start()
     {

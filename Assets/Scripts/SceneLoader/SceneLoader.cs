@@ -139,6 +139,10 @@ public class SceneLoader : MonoBehaviour
          refreshUIEvent?.RaiseEvent();
          timer.enabled = true;
       }
+      else
+      {
+         timer.enabled = false;
+      }
      
    }
 }

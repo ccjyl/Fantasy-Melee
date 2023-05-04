@@ -711,10 +711,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 390234708}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 11400000, guid: d38415cc1e9c1c6428e9b40231722ad0, type: 2}
+        m_TargetAssemblyTypeName: ViodEventSO, Assembly-CSharp
+        m_MethodName: RaiseEvent
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -723,10 +723,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: d38415cc1e9c1c6428e9b40231722ad0, type: 2}
-        m_TargetAssemblyTypeName: ViodEventSO, Assembly-CSharp
-        m_MethodName: RaiseEvent
-        m_Mode: 1
+      - m_Target: {fileID: 390234708}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -809,6 +809,7 @@ MonoBehaviour:
   gameOver: 0
   beginKO: 0
   timer: {fileID: 1804114480}
+  times: {fileID: 1496606578}
   playerP1: {fileID: 0}
   playerP2: {fileID: 0}
 --- !u!4 &1053224522
@@ -890,6 +891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8800491b153554143a521c3161da37e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  remainingTime: 30
   Timer: {fileID: 1804114480}
 --- !u!1 &1556539767
 GameObject:

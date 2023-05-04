@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool beginKO;
     [Header("组件")]
     public Image timer;
+    public CountdownTimer times;
     [HideInInspector]public GameObject playerP1;
     [HideInInspector]public GameObject playerP2;
 
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         //时间结束停止游戏
-        if (timer.fillAmount<=0.1f)
+        if (timer.fillAmount<=0.01f)
         {
             beginKO = true;
         }
